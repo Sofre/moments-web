@@ -27,20 +27,14 @@ export class GalleryComponent implements OnInit, OnDestroy {
   activeFilter: string = 'all';
   isLoading: boolean = false;
   errorMessage: string = '';
-  private routerSubscription: any;
   
   constructor(
     private router: Router, 
     private loadingService: LoadingService,
     private viewPhotosService: ViewPhotosService
   ) {
-    // Subscribe to router events to refresh photos when navigating to gallery
-    this.routerSubscription = this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd && event.url === '/gallery') {
-        console.log('🔄 Gallery navigated to - refreshing photos...');
-        this.refreshPhotos();
-      }
-    });
+    // Removed automatic refresh on navigation - cache should persist when navigating back and forth
+    // Only refresh when explicitly requested (upload or manual reload)
   }
   
   ngOnInit(): void {
@@ -394,10 +388,6 @@ export class GalleryComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.photos.length > 0) {
       this.viewPhotosService.cleanupDisplayUrls(this.photos);
-    }
-    // Clean up router subscription
-    if (this.routerSubscription) {
-      this.routerSubscription.unsubscribe();
     }
   }
   
