@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
+import { Router, RouterModule, NavigationEnd } from '@angular/router';
 import { LoadingService } from '../services/loading.service';
 import { LoadingComponent } from '../animations/loading.component';
 import { ViewPhotosService, DrivePhoto } from '../services/ViewPhotos';
@@ -27,12 +27,21 @@ export class GalleryComponent implements OnInit, OnDestroy {
   activeFilter: string = 'all';
   isLoading: boolean = false;
   errorMessage: string = '';
+  private routerSubscription: any;
   
   constructor(
     private router: Router, 
     private loadingService: LoadingService,
     private viewPhotosService: ViewPhotosService
-  ) {}
+  ) {
+    // Subscribe to router events to refresh photos when navigating to gallery
+    this.routerSubscription = this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd && event.url === '/gallery') {
+        console.log('🔄 Gallery navigated to - refreshing photos...');
+        this.refreshPhotos();
+      }
+    });
+  }
   
   ngOnInit(): void {
     this.loadPhotosFromDrive();
@@ -64,6 +73,38 @@ export class GalleryComponent implements OnInit, OnDestroy {
       this.errorMessage = 'Failed to load photos from Google Drive. Please try again.';
       // Load sample photos as fallback
       this.loadSamplePhotos();
+    } finally {
+      this.isLoading = false;
+      this.loadingService.hide();
+    }
+  }
+
+  // Public method to refresh photos
+  async refreshPhotos(): Promise<void> {
+    console.log('🔄 Refreshing gallery photos with fresh data...');
+    this.isLoading = true;
+    this.errorMessage = '';
+    this.loadingService.show();
+    
+    try {
+      // Force fresh load by passing true to getAllPhotos
+      const drivePhotos = await this.viewPhotosService.getAllPhotos(true);
+      
+      // Convert DrivePhoto to GalleryPhoto
+      this.photos = drivePhotos.map(photo => this.convertToGalleryPhoto(photo));
+      
+      // Apply default filter
+      this.filterPhotos('all');
+      
+      if (this.photos.length === 0) {
+        this.errorMessage = 'No photos found in your Google Drive Moments folder.';
+      } else {
+        // Start preloading images in the background
+        setTimeout(() => this.preloadImages(), 100);
+      }
+      
+    } catch (error) {
+      this.errorMessage = 'Failed to refresh photos. Please try again.';
     } finally {
       this.isLoading = false;
       this.loadingService.hide();
@@ -353,6 +394,10 @@ export class GalleryComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.photos.length > 0) {
       this.viewPhotosService.cleanupDisplayUrls(this.photos);
+    }
+    // Clean up router subscription
+    if (this.routerSubscription) {
+      this.routerSubscription.unsubscribe();
     }
   }
   

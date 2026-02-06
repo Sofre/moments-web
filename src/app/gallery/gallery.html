@@ -5,7 +5,12 @@
   <!-- Gallery Header -->
   <div class="gallery-header">
     <h1 class="gallery-title">Photos</h1>
-    <button class="back-btn" routerLink="/">‹ Back</button>
+    <div class="header-actions">
+      <button class="refresh-btn" (click)="refreshPhotos()" title="Refresh photos">
+        <img src="icons/buba1.png" alt="Refresh" class="refresh-icon">
+      </button>
+      <button class="back-btn" routerLink="/">‹ Back</button>
+    </div>
   </div>
   
   <!-- Error Message -->

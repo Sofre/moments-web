@@ -25,13 +25,12 @@ export class HomeviewComponent implements OnInit {
   showUploadModal: boolean = false;
   showAlbumsModal: boolean = false;
   showShareModal: boolean = false;
-  uploadService = new UploadService();
   albums: Album[] = [];
   showPhotoPreview: boolean = false;
   selectedPhotoUrl: string = '';
   selectedPhotoTitle: string = '';
   
-  constructor(private router: Router, private loadingService: LoadingService, private albumService: AlbumService) {}
+  constructor(private router: Router, private loadingService: LoadingService, private albumService: AlbumService, private uploadService: UploadService) {}
   
   ngOnInit(): void {
     // Make upload service available in console for setup (DEV ONLY)
@@ -83,8 +82,9 @@ export class HomeviewComponent implements OnInit {
   onUploadComplete(files: File[]): void {
     console.log('Upload completed with files:', files);
     this.showUploadModal = false;
-    // After upload, automatically show create album modal
-    this.showAlbumsModal = true;
+    
+    // Navigate to gallery to show the new photos
+    this.router.navigate(['/gallery']);
   }
 
   onUploadSkipped(): void {

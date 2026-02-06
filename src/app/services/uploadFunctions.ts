@@ -1,4 +1,6 @@
- import { environment } from '../../environments/environment';
+import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
+import { PhotoCacheService } from './PhotoCacheService';
 
 interface UploadFileMetadata {
     file: File;
@@ -41,6 +43,9 @@ interface GoogleDriveUploadData {
 }
 
 
+@Injectable({
+    providedIn: 'root'
+})
 export class UploadService {
     // Google Drive API credentials from environment
     private googleDriveEndpoint: string = environment.googleDrive.uploadEndpoint;
@@ -48,6 +53,8 @@ export class UploadService {
     private clientSecret: string = environment.googleDrive.clientSecret;
     private accessToken: string = '';
     private momentsRootFolder: string = 'Moments';
+
+    constructor(private photoCacheService?: PhotoCacheService) {}
     
     // Refresh token from environment (secure)
     private readonly REFRESH_TOKEN: string = environment.googleDrive.refreshToken;
@@ -309,6 +316,11 @@ export class UploadService {
             metadata.driveFileId = responseData.id;
             metadata.driveUrl = `https://drive.google.com/file/d/${responseData.id}/view`;
             metadata.driveFolder = folderId;
+            
+            // Clear photo cache since new photos were uploaded
+            if (this.photoCacheService) {
+                this.photoCacheService.clearCache();
+            }
             
             console.log('Successfully uploaded to Google Drive:', {
                 fileName: data.file.name,

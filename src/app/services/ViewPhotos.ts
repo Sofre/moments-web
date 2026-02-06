@@ -103,10 +103,15 @@ export class ViewPhotosService {
     }
 
     // Main method to get all photos from Google Drive
-    async getAllPhotos(): Promise<DrivePhoto[]> {
-        // Check cache first
+    async getAllPhotos(forceRefresh: boolean = false): Promise<DrivePhoto[]> {
+        // Clear cache if force refresh is requested
+        if (forceRefresh) {
+            this.photoCacheService.clearCache();
+        }
+        
+        // Check cache first (unless force refresh)
         const cachedPhotos = this.photoCacheService.getCachedPhotos();
-        if (cachedPhotos) {
+        if (cachedPhotos && !forceRefresh) {
             // DISABLED: Background preloading causes 429 rate limit errors
             // this.photoCacheService.preloadBlobUrls(cachedPhotos).catch(error => {
             //     console.warn('Background blob preload failed:', error);
@@ -138,6 +143,19 @@ export class ViewPhotosService {
         // });
         
         return photos;
+    }
+
+    /**
+     * Force refresh photos by clearing cache and fetching fresh data
+     */
+    async refreshPhotos(): Promise<DrivePhoto[]> {
+        console.log('🔄 Refreshing photos - clearing cache and fetching fresh data...');
+        
+        // Clear the cache to force fresh fetch
+        this.photoCacheService.clearCache();
+        
+        // Fetch fresh photos
+        return this.getAllPhotos();
     }
 
     // Get photos organized by albums (folders)

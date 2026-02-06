@@ -507,7 +507,6 @@ export class UploadModuleComponent {
   isUploading = false;
   uploadProgress = 0;
   errorMessage = '';
-  uploadService = new UploadService();
   uploadResults: any[] = [];
   
   // Metadata form properties
@@ -520,7 +519,7 @@ export class UploadModuleComponent {
     tags: ''
   };
 
-  constructor(private cdr: ChangeDetectorRef) {
+  constructor(private cdr: ChangeDetectorRef, private uploadService: UploadService) {
     console.log('🔧 Upload module constructor - upload_modul.ts');
     // Initialize user metadata with default values
     this.userMetadata = {

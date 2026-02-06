@@ -21,7 +21,7 @@ export interface Album {
   selector: 'app-create-albums',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  providers: [UploadService, ViewPhotosService, PhotoCacheService],
+  providers: [ViewPhotosService, PhotoCacheService],
   template: `
     <div class="albums-modal-overlay" *ngIf="showModal" (click)="onOverlayClick($event)">
       <div class="albums-modal-content" (click)="$event.stopPropagation()">
@@ -391,11 +391,11 @@ export class CreateAlbumsComponent implements OnInit {
   
   showModal: boolean = true; // Show immediately when component is loaded
   translationService = new TranslationService();
-  uploadService = new UploadService();
   
   constructor(
     private photoCacheService: PhotoCacheService,
-    private viewPhotosService: ViewPhotosService
+    private viewPhotosService: ViewPhotosService,
+    private uploadService: UploadService
   ) {}
   
   newAlbum: Partial<Album> = {
