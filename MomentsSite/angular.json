@@ -48,6 +48,7 @@
                 }
               ],
               "outputHashing": "all",
+              "baseHref": "/moments-web/",
               "serviceWorker": "ngsw-config.json"
             },
             "development": {
