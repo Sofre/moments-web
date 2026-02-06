@@ -1,7 +1,7 @@
 {
   "configVersion": 1,
-  "timestamp": 1770396677897,
-  "index": "/moments-web/index.html",
+  "timestamp": 1770396865333,
+  "index": "/index.html",
   "assetGroups": [
     {
       "name": "app",
@@ -11,11 +11,11 @@
         "ignoreVary": true
       },
       "urls": [
-        "/moments-web/favicon.ico",
-        "/moments-web/index.html",
-        "/moments-web/main-Q6CDGR5W.js",
-        "/moments-web/manifest.webmanifest",
-        "/moments-web/styles-2GXBEILD.css"
+        "/favicon.ico",
+        "/index.html",
+        "/main-Q6CDGR5W.js",
+        "/manifest.webmanifest",
+        "/styles-2GXBEILD.css"
       ],
       "patterns": []
     },
@@ -27,33 +27,33 @@
         "ignoreVary": true
       },
       "urls": [
-        "/moments-web/assets/backgrounds/4k.jpg",
-        "/moments-web/assets/backgrounds/backdrop mitari.jpg",
-        "/moments-web/assets/backgrounds/beach.jpg",
-        "/moments-web/assets/backgrounds/camp.jpg",
-        "/moments-web/assets/backgrounds/first_drop.png",
-        "/moments-web/icons/buba.png",
-        "/moments-web/icons/buba1.png",
-        "/moments-web/icons/icon_placeholder.png"
+        "/assets/backgrounds/4k.jpg",
+        "/assets/backgrounds/backdrop mitari.jpg",
+        "/assets/backgrounds/beach.jpg",
+        "/assets/backgrounds/camp.jpg",
+        "/assets/backgrounds/first_drop.png",
+        "/icons/buba.png",
+        "/icons/buba1.png",
+        "/icons/icon_placeholder.png"
       ],
       "patterns": []
     }
   ],
   "dataGroups": [],
   "hashTable": {
-    "/moments-web/assets/backgrounds/4k.jpg": "9ab8c35068fb62926c2e648220095c35f86fcff3",
-    "/moments-web/assets/backgrounds/backdrop mitari.jpg": "ee7ed10ed254da30ede9cce777ab635ff9455033",
-    "/moments-web/assets/backgrounds/beach.jpg": "11197a56c3f690614d8cc47a8dac3ceb75e3f19b",
-    "/moments-web/assets/backgrounds/camp.jpg": "0322acf495c8df6188a1ad472ccf177a2e1ee9cc",
-    "/moments-web/assets/backgrounds/first_drop.png": "1c3128db59c13bd668dd765923771137522cc1e6",
-    "/moments-web/favicon.ico": "9c39f434fe1261f68c5e3eefdf734630d99c5670",
-    "/moments-web/icons/buba.png": "2100355c07d5211965a1043d140415aa5856dfab",
-    "/moments-web/icons/buba1.png": "4400a6722afab3c9fb5956f69218d35d232a66d0",
-    "/moments-web/icons/icon_placeholder.png": "a87e41e53c965c1ce50adbbc334340997ac245aa",
-    "/moments-web/index.html": "d40945d966e5ea56b2997b6c753b1a982b0eeb75",
-    "/moments-web/main-Q6CDGR5W.js": "05916816a87058e6a72fdf1cfcde92d30e157526",
-    "/moments-web/manifest.webmanifest": "134faf6aa8d9b0d357c1d0098ff494ef63929062",
-    "/moments-web/styles-2GXBEILD.css": "f5f6647eb9ee90c21c9475c316d17b7119c57fbe"
+    "/assets/backgrounds/4k.jpg": "9ab8c35068fb62926c2e648220095c35f86fcff3",
+    "/assets/backgrounds/backdrop mitari.jpg": "ee7ed10ed254da30ede9cce777ab635ff9455033",
+    "/assets/backgrounds/beach.jpg": "11197a56c3f690614d8cc47a8dac3ceb75e3f19b",
+    "/assets/backgrounds/camp.jpg": "0322acf495c8df6188a1ad472ccf177a2e1ee9cc",
+    "/assets/backgrounds/first_drop.png": "1c3128db59c13bd668dd765923771137522cc1e6",
+    "/favicon.ico": "9c39f434fe1261f68c5e3eefdf734630d99c5670",
+    "/icons/buba.png": "2100355c07d5211965a1043d140415aa5856dfab",
+    "/icons/buba1.png": "4400a6722afab3c9fb5956f69218d35d232a66d0",
+    "/icons/icon_placeholder.png": "a87e41e53c965c1ce50adbbc334340997ac245aa",
+    "/index.html": "34c20cc8548be39693e09c0c2d2bc098655650cd",
+    "/main-Q6CDGR5W.js": "05916816a87058e6a72fdf1cfcde92d30e157526",
+    "/manifest.webmanifest": "134faf6aa8d9b0d357c1d0098ff494ef63929062",
+    "/styles-2GXBEILD.css": "f5f6647eb9ee90c21c9475c316d17b7119c57fbe"
   },
   "navigationUrls": [
     {
