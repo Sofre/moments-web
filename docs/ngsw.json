@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1770397555704,
+  "timestamp": 1770397677899,
   "index": "/moments-web/index.html",
   "assetGroups": [
     {
@@ -21,7 +21,7 @@
     },
     {
       "name": "assets",
-      "installMode": "lazy",
+      "installMode": "prefetch",
       "updateMode": "prefetch",
       "cacheQueryOptions": {
         "ignoreVary": true
@@ -31,10 +31,7 @@
         "/moments-web/assets/backgrounds/backdrop mitari.jpg",
         "/moments-web/assets/backgrounds/beach.jpg",
         "/moments-web/assets/backgrounds/camp.jpg",
-        "/moments-web/assets/backgrounds/first_drop.png",
-        "/moments-web/icons/buba.png",
-        "/moments-web/icons/buba1.png",
-        "/moments-web/icons/icon_placeholder.png"
+        "/moments-web/assets/backgrounds/first_drop.png"
       ],
       "patterns": []
     }
@@ -47,9 +44,6 @@
     "/moments-web/assets/backgrounds/camp.jpg": "0322acf495c8df6188a1ad472ccf177a2e1ee9cc",
     "/moments-web/assets/backgrounds/first_drop.png": "1c3128db59c13bd668dd765923771137522cc1e6",
     "/moments-web/favicon.ico": "9c39f434fe1261f68c5e3eefdf734630d99c5670",
-    "/moments-web/icons/buba.png": "2100355c07d5211965a1043d140415aa5856dfab",
-    "/moments-web/icons/buba1.png": "4400a6722afab3c9fb5956f69218d35d232a66d0",
-    "/moments-web/icons/icon_placeholder.png": "a87e41e53c965c1ce50adbbc334340997ac245aa",
     "/moments-web/index.html": "d40945d966e5ea56b2997b6c753b1a982b0eeb75",
     "/moments-web/main-Q6CDGR5W.js": "05916816a87058e6a72fdf1cfcde92d30e157526",
     "/moments-web/manifest.webmanifest": "134faf6aa8d9b0d357c1d0098ff494ef63929062",
