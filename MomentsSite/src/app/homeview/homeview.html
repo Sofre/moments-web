@@ -1,0 +1,150 @@
+<div class="homeview-container">
+  <!-- Loading Component -->
+  <app-loading></app-loading>
+  
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">{{ translate('heroTitle') }}</h1>
+      <p class="hero-subtitle">{{ translate('heroSubtitle') }}</p>
+      <div class="hero-cta">
+        <button class="btn btn-primary" (click)="openUploadModal()">{{ translate('getStarted') }}</button>
+        <button class="btn btn-secondary" (click)="scrollToHowItWorks()">{{ translate('learnMore') }}</button>
+        <button class="btn btn-secondary" (click)="toggleLanguage()">
+          {{ getCurrentLanguage() === 'en' ? 'Македонски' : 'English' }}
+        </button>
+        <button class="btn btn-secondary" routerLink="/gallery">{{ translate('gallery') }}</button>      </div>
+    </div>
+    <div class="hero-image">
+    <img src="icons/buba1.png" alt="Duki Bubata" class="hero-image-content">
+    </div>
+   
+  </section>
+
+  <!-- Features Section -->
+  
+
+  <!-- Gallery Preview Section -->
+  <section class="gallery-preview">
+    <div class="section-header">
+      <h2 class="section-title">{{ translate('showcaseTitle') }}</h2>
+    </div>
+    
+    <!-- Default Gallery Items -->
+    <div class="default-gallery">
+      <div class="gallery-grid">
+        <div class="gallery-item" *ngFor="let item of galleryItems; let i = index" (click)="openPhotoPreview(item, i)">
+          <div class="gallery-image">📷</div>
+          <p>{{ translate(item) }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Albums Section -->
+  <section class="albums-section">
+  
+    
+    <!-- Albums Grid -->
+    <div class="albums-grid" *ngIf="albums.length > 0">
+      <div class="album-item" *ngFor="let album of albums; trackBy: trackByAlbumId">
+        <button class="album-remove-btn" (click)="removeAlbum(album.id)" title="Remove Album">×</button>
+        <div class="album-cover" (click)="openAlbumPreview(album)">
+          <div class="album-icon">📸</div>
+          <div class="album-badge">{{ album.photoCount }}</div>
+        </div>
+        <div class="album-info">
+          <h3 class="album-title">{{ album.title }}</h3>
+          <span class="album-meta">{{ album.createdDate | date:'MMM d, y' }}</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Empty State -->
+    <div class="empty-state" *ngIf="albums.length === 0">
+      <div class="empty-icon">📁</div>
+      <h3>{{ translate('noAlbumsTitle') || 'No Albums Yet' }}</h3>
+      <p>{{ translate('noAlbumsDesc') || 'Create your first album to organize your photos' }}</p>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="how-it-works" id="how-it-works">
+    <h2 class="section-title">{{ translate('howItWorksTitle') }}</h2>
+    <div class="steps-container">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>{{ translate('stepUpload') }}</h3>
+        <p>{{ translate('stepUploadDesc') }}</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>{{ translate('stepOrganize') }}</h3>
+        <p>{{ translate('stepOrganizeDesc') }}</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>{{ translate('stepShare') }}</h3>
+        <p>{{ translate('stepShareDesc') }}</p>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <h3>{{ translate('stepEnjoy') }}</h3>
+        <p>{{ translate('stepEnjoyDesc') }}</p>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+    <footer class="footer">
+    <!-- Footer Section -->
+    <div class="footer-bottom">
+      <p style="font-size: medium;"> Developed by Dusko Sofronievski </p>
+    </div>
+  </footer>
+</div>
+
+<!-- Upload Module -->
+<app-upload-module 
+  *ngIf="showUploadModal"
+  (uploadComplete)="onUploadComplete($event)"
+  (uploadSkipped)="onUploadSkipped()"
+  (modalClosed)="onUploadModalClosed()">
+</app-upload-module>
+
+<!-- Create Albums Module -->
+<app-create-albums 
+  *ngIf="showAlbumsModal"
+  (albumCreated)="onAlbumCreated($event)"
+  (albumSkipped)="onAlbumsSkipped()"
+  (modalClosed)="onAlbumsModalClosed()">
+</app-create-albums>
+
+<!-- Share Module -->
+<app-share-module 
+  *ngIf="showShareModal"
+  (modalClosed)="onShareModalClosed()">
+</app-share-module>
+
+<!-- Photo Preview Modal -->
+<div class="photo-preview-overlay" *ngIf="showPhotoPreview" (click)="closePhotoPreview()">
+  <div class="photo-preview-container" (click)="$event.stopPropagation()">
+    <button class="preview-close-btn" (click)="closePhotoPreview()">&times;</button>
+    <div class="photo-preview-content">
+      <img [src]="selectedPhotoUrl" [alt]="selectedPhotoTitle" class="preview-image" />
+      <div class="photo-info" *ngIf="selectedPhotoTitle">
+        <h3 class="photo-title">{{ selectedPhotoTitle }}</h3>
+      </div>
+    </div>
+  </div>
+</div>
+

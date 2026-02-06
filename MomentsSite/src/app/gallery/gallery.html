@@ -1,0 +1,58 @@
+<div class="gallery-container">
+  <!-- Loading Component -->
+  <app-loading></app-loading>
+  
+  <!-- Gallery Header -->
+  <div class="gallery-header">
+    <h1 class="gallery-title">Photos</h1>
+    <button class="back-btn" routerLink="/">‹ Back</button>
+  </div>
+  
+  <!-- Error Message -->
+  <div class="error-message" *ngIf="errorMessage">
+    <p class="error">{{ errorMessage }}</p>
+    <button (click)="retryLoadPhotos()">Retry</button>
+  </div>
+  
+  <!-- Filter Buttons -->
+  <div class="filter-section" *ngIf="!isLoading && photos.length > 0">
+    <button class="filter-btn" [class.active]="isFilterActive('all')" (click)="filterPhotos('all')">All</button>
+    <button class="filter-btn" [class.active]="isFilterActive('nature')" (click)="filterPhotos('nature')">Nature</button>
+    <button class="filter-btn" [class.active]="isFilterActive('people')" (click)="filterPhotos('people')">People</button>
+    <button class="filter-btn" [class.active]="isFilterActive('events')" (click)="filterPhotos('events')">Events</button>
+  </div>
+  
+  <!-- Gallery Grid -->
+  <div class="gallery-grid" *ngIf="!isLoading">
+    <!-- Photo Items -->
+    <div class="gallery-item" 
+         *ngFor="let photo of getFilteredPhotos(); trackBy: trackPhotoById" 
+         (click)="viewPhoto(photo)">
+      
+      <img [src]="getPhotoThumbnail(photo)" 
+           [alt]="photo.displayTitle"
+           (error)="onImageError(photo, $event)"
+           class="gallery-image"
+           loading="lazy">
+           
+      <div class="photo-info">
+        <h3 class="photo-title">{{ photo.displayTitle }}</h3>
+        <p class="photo-date">{{ photo.displayDate }}</p>
+        <p class="photo-category">{{ photo.category }}</p>
+      </div>
+      
+      <div class="photo-actions">
+        <button (click)="downloadPhoto(photo); $event.stopPropagation()" class="action-btn">⬇</button>
+        <button (click)="sharePhoto(photo); $event.stopPropagation()" class="action-btn">📤</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Empty State -->
+  <div class="empty-state" *ngIf="!isLoading && !errorMessage && filteredPhotos.length === 0">
+    <div class="empty-icon">📷</div>
+    <h3>No Photos Found</h3>
+    <p>No photos match the current filter.</p>
+  </div>
+  
+</div>

@@ -1,0 +1,177 @@
+# Dataset Structure for AI Processing
+# Generated from MomentsSite Upload System
+# Date: 2026-02-03
+
+# Google Drive API Integration for AI Dataset 
+## METADATA STRUCTURE (Updated with User Input):
+{
+  "file": File,
+  "metadata": {
+    "originalName": "string - Original filename (e.g., 'sunset_beach.jpg')",
+    "size": "number - File size in bytes (e.g., 2045632)",
+    "type": "string - MIME type (e.g., 'image/jpeg', 'image/png')",
+    "uploadTimestamp": "string - ISO timestamp (e.g., '2026-02-03T10:30:00.000Z')",
+    "userName": "string - User provided name (e.g., 'John Doe' or 'general')",
+    "category": "string - Fixed value 'moment-photo'",
+    "tags": "array - Combined auto-generated + user provided tags",
+    "dimensions": "object|null - {width: number, height: number} - Future enhancement",
+    "location": "object|null - {lat: number, lng: number} - Future enhancement from EXIF",
+    "visibility": "string - 'private'|'public'|'shared' - Default: 'private'",
+    "eventDate": "string|undefined - User provided date (e.g., '2026-01-15')",
+    "description": "string|undefined - User provided description (e.g., 'Family vacation in Greece')",
+    "userLocation": "string|undefined - User provided location (e.g., 'Santorini, Greece')"
+  },
+  "driveData": {
+    "driveFileId": "string - Google Drive file ID (e.g., '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms')",
+    "driveUrl": "string - Direct view link (e.g., 'https://drive.google.com/file/d/{fileId}/view')",
+    "driveFolder": "string - Parent folder ID in Drive hierarchy"
+  }
+}
+
+## USER METADATA INPUT FIELDS:
+- userName: User's name or identifier (required for folder structure)
+- location: Text description of photo location (e.g., "Paris, France")
+- eventDate: Date picker for when photo was taken (defaults to today)
+- description: Free text description of the moment/photo
+- tags: Comma-separated tags for grouping and albums (e.g., "vacation, beach, sunset")
+
+## FOLDER STRUCTURE IN GOOGLE DRIVE:
+
+**Full User Structure (when user provides meaningful data):**
+Moments/
+├── [Username]/
+│   ├── [Location]/ (if provided)
+│   │   ├── [YY-MM-DD]/
+│   │   │   └── [firstTag]/ (if provided)
+│   │   │       └── photo files
+
+**Simple Fallback Structure (no user data):**
+Moments/
+├── General/
+│   └── photo files (flat structure)
+
+Examples: 
+- Moments/John Doe/Paris France/26-02-03/vacation/photo.jpg
+- Moments/Jane Smith/26-02-03/family/photo.jpg (no location provided)
+- Moments/General/photo.jpg (no username or location provided)
+
+## FALLBACK BEHAVIOR:
+- If no meaningful userName AND no location: uses simple "Moments/General/" structure
+- If userName provided but no location: "Moments/Username/Date/Tags/"
+- If both userName and location provided: "Moments/Username/Location/Date/Tags/"
+- If eventDate not provided: uses current date
+- First meaningful tag (not "user-upload") used for folder organization
+
+## TAG CATEGORIES:
+
+### BASE TAGS:
+- "user-upload" - Always present for user-uploaded content
+
+### CONTENT-BASED TAGS (filename analysis):
+- "selfie" - Detected from filenames containing 'selfie'
+- "group" - Detected from filenames containing 'group'
+- "family" - Detected from filenames containing 'family'
+- "travel" - Detected from filenames containing 'travel'
+- "vacation" - Detected from filenames containing 'vacation'
+- "wedding" - Detected from filenames containing 'wedding'
+- "birthday" - Detected from filenames containing 'birthday'
+
+### FILE-TYPE TAGS:
+- "jpg", "jpeg", "png", "gif", "webp" - Based on file extension
+
+### QUALITY TAGS:
+- "high-quality" - Files larger than 5MB (5,000,000 bytes)
+- "compressed" - Files smaller than 500KB (500,000 bytes)
+
+### FALLBACK TAGS (when no content tags detected):
+- "memory" - Generic memory categorization
+- "photo" - Generic photo categorization  
+- "moment" - Generic moment categorization
+- "{month}-upload" - Current month (e.g., "february-upload", "march-upload")
+
+## GOOGLE DRIVE FOLDER STRUCTURE:
+Root Folder: "MomentsApp-Photos"
+Hierarchy: "MomentsApp-Photos/{userId}/{year}/{month}/{day}/"
+Filename: "{uniqueId}_{originalName}"
+
+Example Folder Path: "MomentsApp-Photos/user-1738590600000/2026/02/03/"
+Example Filename: "1738590600000_abc123def_family_beach_2026.jpg"
+Full Drive URL: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/view"
+
+## SAMPLE DATASET ENTRIES:
+
+### Entry 1 - Family Photo:
+Filename: "family_vacation_selfie.jpg" (3.2MB)
+Metadata: {
+  "originalName": "family_vacation_selfie.jpg",
+  "size": 3355443,
+  "type": "image/jpeg",
+  "uploadTimestamp": "2026-02-03T14:25:30.000Z",
+  "userId": "user-1738590600000",
+  "category": "moment-photo",
+  "tags": ["user-upload", "family", "vacation", "selfie", "jpg"],
+  "dimensions": null,
+  "location": null,
+  "visibility": "private"
+}
+DriveFolder: "MomentsApp-Photos/user-1738590600000/2026/02/03/"
+DriveFileId: "1xyz789abcDEF123456GHI789jkl"
+DriveURL: "https://drive.google.com/file/d/1xyz789abcDEF123456GHI789jkl/view"
+
+### Entry 2 - Generic Photo:
+Filename: "IMG_20260203.png" (800KB)
+Metadata: {
+  "originalName": "IMG_20260203.png",
+  "size": 819200,
+  "type": "image/png",
+  "uploadTimestamp": "2026-02-03T14:30:15.000Z",
+  "userId": "user-1738590600000",
+  "category": "moment-photo",
+  "tags": ["user-upload", "png", "memory", "photo", "moment", "february-upload"],
+  "dimensions": null,
+  "location": null,
+  "visibility": "private"
+}
+DriveFolder: "MomentsApp-Photos/user-1738590600000/2026/02/03/"
+DriveFileId: "1def456ghiJKL789012MNO456pqr"
+DriveURL: "https://drive.google.com/file/d/1def456ghiJKL789012MNO456pqr/view"
+
+### Entry 3 - High Quality Wedding Photo:
+Filename: "wedding_ceremony_2026.jpg" (8.5MB)
+Metadata: {
+  "originalName": "wedding_ceremony_2026.jpg",
+  "size": 8912896,
+  "type": "image/jpeg",
+  "uploadTimestamp": "2026-02-03T15:45:22.000Z",
+  "userId": "user-1738590600000",
+  "category": "moment-photo",
+  "tags": ["user-upload", "wedding", "jpg", "high-quality"],
+  "dimensions": null,
+  "location": null,
+  "visibility": "private"
+}
+DriveFolder: "MomentsApp-Photos/user-1738590600000/2026/02/03/"
+DriveFileId: "1ghi789jklSTU012345VWX789yz0"
+DriveURL: "https://drive.google.com/file/d/1ghi789jklSTU012345VWX789yz0/view"
+
+## AI TRAINING CONSIDERATIONS:
+- All uploads categorized as "moment-photo" for consistent classification
+- Tags provide multiple classification angles: content, quality, format
+- Temporal organization through Google Drive date-based folder hierarchy
+- User isolation for privacy and personalization via separate Drive folders
+- Extensible metadata structure stored in Drive file descriptions
+- Google Drive file IDs provide unique, permanent identifiers for dataset tracking
+- Drive sharing URLs enable secure access control for AI training datasets
+- Consistent naming conventions for reliable pattern recognition
+
+## FUTURE ENHANCEMENTS FOR AI:
+- Image dimension analysis for aspect ratio classification
+- EXIF GPS data extraction for location-based categorization
+- Color palette analysis for mood/theme detection
+- Face detection count for group size estimation
+- Time-based pattern recognition for event clustering
+- Google Drive API integration for automated dataset updates
+- Drive file versioning for training data iteration tracking
+- Batch Drive folder processing for large-scale AI training
+- Drive permissions management for collaborative AI model development
+- Real-time sync between Drive uploads and AI training pipelines
