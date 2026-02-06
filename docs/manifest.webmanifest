@@ -6,19 +6,19 @@
   "start_url": "./",
   "icons": [
     {
-      "src": "icons/buba.png",
+      "src": "assets/icons/buba.png",
       "sizes": "any",
       "type": "image/png",
       "purpose": "maskable any"
     },
     {
-      "src": "icons/buba1.png",
+      "src": "assets/icons/buba1.png",
       "sizes": "any",
       "type": "image/png",
       "purpose": "maskable any"
     },
     {
-      "src": "icons/icon_placeholder.png",
+      "src": "assets/icons/icon_placeholder.png",
       "sizes": "any",
       "type": "image/png",
       "purpose": "maskable any"
