@@ -38,17 +38,27 @@ export class GalleryComponent implements OnInit, OnDestroy {
   }
   
   ngOnInit(): void {
-    this.loadPhotosFromDrive();
+    // Check if this is a page reload (sessionStorage cleared) or navigation
+    const isPageReload = !sessionStorage.getItem('gallery_loaded');
+    
+    if (isPageReload) {
+      // Page reload: fetch fresh images
+      this.loadPhotosFromDrive(true);
+      sessionStorage.setItem('gallery_loaded', 'true');
+    } else {
+      // Navigation: use cached images
+      this.loadPhotosFromDrive(false);
+    }
   }
   
   // Load photos from Google Drive
-  private async loadPhotosFromDrive(): Promise<void> {
+  private async loadPhotosFromDrive(forceRefresh: boolean = false): Promise<void> {
     this.isLoading = true;
     this.errorMessage = '';
     this.loadingService.show();
     
     try {
-      const drivePhotos = await this.viewPhotosService.getAllPhotos();
+      const drivePhotos = await this.viewPhotosService.getAllPhotos(forceRefresh);
       
       // Convert DrivePhoto to GalleryPhoto
       this.photos = drivePhotos.map(photo => this.convertToGalleryPhoto(photo));
@@ -73,37 +83,7 @@ export class GalleryComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Public method to refresh photos
-  async refreshPhotos(): Promise<void> {
-    console.log('🔄 Refreshing gallery photos with fresh data...');
-    this.isLoading = true;
-    this.errorMessage = '';
-    this.loadingService.show();
-    
-    try {
-      // Force fresh load by passing true to getAllPhotos
-      const drivePhotos = await this.viewPhotosService.getAllPhotos(true);
-      
-      // Convert DrivePhoto to GalleryPhoto
-      this.photos = drivePhotos.map(photo => this.convertToGalleryPhoto(photo));
-      
-      // Apply default filter
-      this.filterPhotos('all');
-      
-      if (this.photos.length === 0) {
-        this.errorMessage = 'No photos found in your Google Drive Moments folder.';
-      } else {
-        // Start preloading images in the background
-        setTimeout(() => this.preloadImages(), 100);
-      }
-      
-    } catch (error) {
-      this.errorMessage = 'Failed to refresh photos. Please try again.';
-    } finally {
-      this.isLoading = false;
-      this.loadingService.hide();
-    }
-  }
+
   
   // Convert DrivePhoto to GalleryPhoto
   private convertToGalleryPhoto(drivePhoto: DrivePhoto): GalleryPhoto {
