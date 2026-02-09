@@ -12,13 +12,7 @@
       "purpose": "maskable any"
     },
     {
-      "src": "assets/icons/buba1.png",
-      "sizes": "any",
-      "type": "image/png",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "assets/icons/icon_placeholder.png",
+      "src": "assets/images/buba1.png",
       "sizes": "any",
       "type": "image/png",
       "purpose": "maskable any"
