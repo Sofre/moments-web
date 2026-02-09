@@ -1,7 +1,7 @@
 {
   "configVersion": 1,
-  "timestamp": 1770649662869,
-  "index": "/index.html",
+  "timestamp": 1770649795037,
+  "index": "/moments-web/index.html",
   "assetGroups": [
     {
       "name": "app",
@@ -11,11 +11,11 @@
         "ignoreVary": true
       },
       "urls": [
-        "/favicon.ico",
-        "/index.html",
-        "/main-CHZDX5G2.js",
-        "/manifest.webmanifest",
-        "/styles-2GXBEILD.css"
+        "/moments-web/favicon.ico",
+        "/moments-web/index.html",
+        "/moments-web/main-YYX44FVF.js",
+        "/moments-web/manifest.webmanifest",
+        "/moments-web/styles-2GXBEILD.css"
       ],
       "patterns": []
     },
@@ -27,23 +27,23 @@
         "ignoreVary": true
       },
       "urls": [
-        "/assets/images/4k.jpg",
-        "/assets/images/beach.jpg",
-        "/assets/images/buba1.png"
+        "/moments-web/assets/images/4k.jpg",
+        "/moments-web/assets/images/beach.jpg",
+        "/moments-web/assets/images/buba1.png"
       ],
       "patterns": []
     }
   ],
   "dataGroups": [],
   "hashTable": {
-    "/assets/images/4k.jpg": "9ab8c35068fb62926c2e648220095c35f86fcff3",
-    "/assets/images/beach.jpg": "11197a56c3f690614d8cc47a8dac3ceb75e3f19b",
-    "/assets/images/buba1.png": "4400a6722afab3c9fb5956f69218d35d232a66d0",
-    "/favicon.ico": "9c39f434fe1261f68c5e3eefdf734630d99c5670",
-    "/index.html": "47d362709f0d7c4c0ed569505ade11a554986fbb",
-    "/main-CHZDX5G2.js": "a411e8060863aac3927e3e2eb1e0e3961f7b000e",
-    "/manifest.webmanifest": "f509666cb09a6e16f4230d4ea4e8164250933f74",
-    "/styles-2GXBEILD.css": "f5f6647eb9ee90c21c9475c316d17b7119c57fbe"
+    "/moments-web/assets/images/4k.jpg": "9ab8c35068fb62926c2e648220095c35f86fcff3",
+    "/moments-web/assets/images/beach.jpg": "11197a56c3f690614d8cc47a8dac3ceb75e3f19b",
+    "/moments-web/assets/images/buba1.png": "4400a6722afab3c9fb5956f69218d35d232a66d0",
+    "/moments-web/favicon.ico": "9c39f434fe1261f68c5e3eefdf734630d99c5670",
+    "/moments-web/index.html": "8e0bd1d490905fdea8f54dd8bf15e28658804a69",
+    "/moments-web/main-YYX44FVF.js": "5863dbcab9eb5a3a5ec4271237db3947c571a846",
+    "/moments-web/manifest.webmanifest": "f509666cb09a6e16f4230d4ea4e8164250933f74",
+    "/moments-web/styles-2GXBEILD.css": "f5f6647eb9ee90c21c9475c316d17b7119c57fbe"
   },
   "navigationUrls": [
     {
