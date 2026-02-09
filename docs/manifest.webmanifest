@@ -6,13 +6,7 @@
   "start_url": "./",
   "icons": [
     {
-      "src": "assets/icons/buba.png",
-      "sizes": "any",
-      "type": "image/png",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "assets/images/buba1.png",
+      "src": "/moments-web/assets/images/buba1.png",
       "sizes": "any",
       "type": "image/png",
       "purpose": "maskable any"
