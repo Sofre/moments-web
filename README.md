@@ -2,6 +2,8 @@
 
 **A Modern Photo Gallery Progressive Web App**
 
+** Personal Project **
+
 MomentsSite is a sophisticated photo management application that seamlessly integrates with Google Drive to provide a beautiful, offline-capable photo gallery experience. Built with Angular and designed as a Progressive Web App (PWA), it allows users to view, organize, and manage their photo collections with advanced caching and offline functionality.
 
 ## What It's For
@@ -45,62 +47,7 @@ MomentsSite serves as a personal photo gallery that connects directly to your Go
 - **Error Handling**: Graceful fallbacks and retry mechanisms
 - **TypeScript**: Fully typed codebase for better development experience
 
-## Version 1.0 Production - Changes Incoming
-
-### FROM TO DO LIST - Planned Features & Improvements
-
-#### 🔄 **Caching & Performance**
-- [ ] Implement Redis caching for photo metadata
-- [ ] Add image compression and WebP format support
-- [ ] Optimize bundle size with lazy loading modules
-- [ ] Implement virtual scrolling for large photo collections
-
-#### 📱 **Mobile & PWA Enhancements**
-- [ ] Add camera integration for direct photo capture
-- [ ] Implement photo editing tools (crop, rotate, filters)
-- [ ] Add gesture controls (swipe, pinch-to-zoom)
-- [ ] Improve offline photo upload queue
-- [ ] Add biometric authentication for app access
-
-#### 🎨 **UI/UX Improvements**
-- [ ] Implement dark/light theme toggle
-- [ ] Add photo slideshow with transitions
-- [ ] Create custom photo album covers
-- [ ] Add photo rating and favorites system
-- [ ] Implement drag-and-drop album organization
-
-#### 🔍 **Search & Organization**
-- [ ] Advanced search with facial recognition
-- [ ] Location-based photo clustering
-- [ ] AI-powered photo tagging and categorization
-- [ ] Timeline view with date-based navigation
-- [ ] Photo backup and sync status indicators
-
-#### 🔒 **Security & Privacy**
-- [ ] End-to-end encryption for photo uploads
-- [ ] Privacy controls for shared albums
-- [ ] Two-factor authentication
-- [ ] Secure photo sharing with expiration
-- [ ] GDPR compliance features
-
-#### 🌐 **Integration & Sharing**
-- [ ] Social media sharing with direct upload
-- [ ] Integration with Google Photos API
-- [ ] Export to cloud storage providers
-- [ ] Photo printing service integration
-- [ ] QR code generation for album sharing
-
-#### 📊 **Analytics & Insights**
-- [ ] Photo statistics and usage analytics
-- [ ] Storage usage monitoring
-- [ ] Photo quality analysis
-- [ ] Upload/download activity logs
-
-#### 🛠 **Developer Experience**
-- [ ] Comprehensive API documentation
-- [ ] Automated testing suite expansion
-- [ ] CI/CD pipeline optimization
-- [ ] Performance monitoring and alerting
+## Version 1.0 Production - Changes Incoming 
 
 ## Development server
 
