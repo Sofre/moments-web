@@ -116,6 +116,7 @@
 <!-- Upload Module -->
 <app-upload-module 
   *ngIf="showUploadModal"
+  [currentLanguage]="getCurrentLanguage()"
   (uploadComplete)="onUploadComplete($event)"
   (uploadSkipped)="onUploadSkipped()"
   (modalClosed)="onUploadModalClosed()">

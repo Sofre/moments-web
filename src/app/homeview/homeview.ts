@@ -21,7 +21,6 @@ import { ViewPhotosService } from '../services/ViewPhotos';
   styleUrl: './homeview.css'
 })
 export class HomeviewComponent implements OnInit {
-  translationService = new TranslationService();
   showUploadModal: boolean = false;
   showAlbumsModal: boolean = false;
   showShareModal: boolean = false;
@@ -30,7 +29,7 @@ export class HomeviewComponent implements OnInit {
   selectedPhotoUrl: string = '';
   selectedPhotoTitle: string = '';
   
-  constructor(private router: Router, private loadingService: LoadingService, private albumService: AlbumService, private uploadService: UploadService) {}
+  constructor(private router: Router, private loadingService: LoadingService, private albumService: AlbumService, private uploadService: UploadService, private translationService: TranslationService) {}
   
   ngOnInit(): void {
     // Make upload service available in console for setup (DEV ONLY)

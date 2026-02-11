@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit, SimpleChanges, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TranslationService } from '../services/translations';
@@ -388,14 +388,16 @@ export class CreateAlbumsComponent implements OnInit {
   @Output() albumCreated = new EventEmitter<Album>();
   @Output() modalClosed = new EventEmitter<void>();
   @Output() albumSkipped = new EventEmitter<void>();
+  @Input() currentLanguage: string = 'en';
   
   showModal: boolean = true; // Show immediately when component is loaded
-  translationService = new TranslationService();
+  
   
   constructor(
     private photoCacheService: PhotoCacheService,
     private viewPhotosService: ViewPhotosService,
-    private uploadService: UploadService
+    private uploadService: UploadService,
+    private translationService: TranslationService
   ) {}
   
   newAlbum: Partial<Album> = {
@@ -411,7 +413,17 @@ export class CreateAlbumsComponent implements OnInit {
   ngOnInit(): void {
     this.resetForm();
     this.loadAvailablePhotos();
+    console.log('CreateAlbumsComponent initialized');
+    console.log('Current language:', this.translationService.getCurrentLanguage());
   }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes['currentLanguage']) {
+      this.translationService.setLanguage(this.currentLanguage);
+    }
+  }
+
+
   
   // Get display URL for photo thumbnail
   getBlobUrl(photo: DrivePhoto): string {

@@ -94,6 +94,24 @@ export interface Translation {
   cookiePolicy: string;
   followUs: string;
   allRightsReserved: string;
+  
+  // Upload Module
+  uploadTitle: string;
+  dragDropText: string;
+  orClickToBrowse: string;
+  supportedFormats: string;
+  uploading: string;
+  addDetailsTitle: string;
+  yourName: string;
+  location: string;
+  date: string;
+  description: string;
+  tags: string;
+  tagsPlaceholder: string;
+  addDetails: string;
+  back: string;
+  uploadPhotos: string;
+  uploadingBtn: string;
 }
 
 export const translations: Record<string, Translation> = {
@@ -192,7 +210,25 @@ export const translations: Record<string, Translation> = {
     termsOfService: 'Terms of Service',
     cookiePolicy: 'Cookie Policy',
     followUs: 'Follow Us',
-    allRightsReserved: 'All rights reserved.'
+    allRightsReserved: 'All rights reserved.',
+    
+    // Upload Module
+    uploadTitle: 'Upload Your Moments',
+    dragDropText: 'Drag & Drop your photos here',
+    orClickToBrowse: 'or click to browse',
+    supportedFormats: 'Supports: JPG, PNG, GIF, WEBP',
+    uploading: 'Uploading...',
+    addDetailsTitle: 'Add Details to Your Moments',
+    yourName: 'Your Name:',
+    location: 'Location:',
+    date: 'Date:',
+    description: 'Description:',
+    tags: 'Tags:',
+    tagsPlaceholder: 'sunset, beach, family (comma separated)',
+    addDetails: 'Add Details',
+    back: 'Back',
+    uploadPhotos: 'Upload Photos',
+    uploadingBtn: 'Uploading...'
   },
   
   mk: {
@@ -289,10 +325,33 @@ export const translations: Record<string, Translation> = {
     termsOfService: 'Услови за Користење',
     cookiePolicy: 'Политика за Колачиња',
     followUs: 'Следете не',
-    allRightsReserved: 'Сите права се задржани.'
+    allRightsReserved: 'Сите права се задржани.',
+    
+    // Upload Module
+    uploadTitle: 'Прикачете ги Вашите Моменти',
+    dragDropText: 'Повлечете и пуштете ги вашите фотографии овде',
+    orClickToBrowse: 'или кликнете за да пребарувате',
+    supportedFormats: 'Поддржува: JPG, PNG, GIF, WEBP',
+    uploading: 'Се прикачува...',
+    addDetailsTitle: 'Додадете Детали на Вашите Моменти',
+    yourName: 'Вашето Име:',
+    location: 'Локација:',
+    date: 'Датум:',
+    description: 'Опис:',
+    tags: 'Ознаки:',
+    tagsPlaceholder: 'залез, плажа, семејство (одделени со запирка)',
+    addDetails: 'Додадете Детали',
+    back: 'Назад',
+    uploadPhotos: 'Прикачете Фотографии',
+    uploadingBtn: 'Се прикачува...'
   }
 };
 
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
 export class TranslationService {
   private currentLanguage: string = 'en';
   

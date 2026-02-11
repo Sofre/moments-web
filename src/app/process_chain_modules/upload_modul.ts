@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Output, ChangeDetectorRef } from '@angular/core';
+import { Component, EventEmitter, Output, ChangeDetectorRef, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UploadService, UserMetadata } from '../services/uploadFunctions';
+import { TranslationService,Translation } from '../services/translations';
 
 @Component({
   selector: 'app-upload-module',
@@ -11,7 +12,7 @@ import { UploadService, UserMetadata } from '../services/uploadFunctions';
     <div class="upload-overlay" *ngIf="isVisible">
       <div class="upload-modal">
         <div class="upload-header">
-          <h2 style="font-family: 'Pacifico', Tahoma, Geneva, Verdana, sans-serif;">{{ title }}</h2>
+          <h2 style="font-family: 'Pacifico', Tahoma, Geneva, Verdana, sans-serif;">{{ translate('uploadTitle') }}</h2>
           <button class="close-btn" (click)="closeModal()">✕</button>
         </div>
         
@@ -25,10 +26,10 @@ import { UploadService, UserMetadata } from '../services/uploadFunctions';
             
             <div *ngIf="selectedFiles.length === 0" class="upload-placeholder">
               <div class="upload-icon">📸</div>
-              <p class="upload-text">Drag & Drop your photos here</p>
-              <p class="upload-subtext">or click to browse</p>
+              <p class="upload-text">{{ translate('dragDropText') }}</p>
+              <p class="upload-subtext">{{ translate('orClickToBrowse') }}</p>
               <div class="supported-formats">
-                <small>Supports: JPG, PNG, GIF, WEBP</small>
+                <small>{{ translate('supportedFormats') }}</small>
               </div>
             </div>
             
@@ -57,14 +58,14 @@ import { UploadService, UserMetadata } from '../services/uploadFunctions';
             <div class="progress-bar">
               <div class="progress-fill" [style.width.%]="uploadProgress"></div>
             </div>
-            <p class="progress-text">Uploading... {{ uploadProgress }}%</p>
+            <p class="progress-text">{{ translate('uploading') }} {{ uploadProgress }}%</p>
           </div>
 
           <!-- Metadata Form -->
           <div class="metadata-form" *ngIf="showMetadataForm && !isUploading">
-            <h3>Add Details to Your Moments</h3>
+            <h3>{{ translate('addDetailsTitle') }}</h3>
             <div class="form-row">
-              <label for="userName">Your Name:</label>
+              <label for="userName">{{ translate('yourName') }}</label>
               <input 
                 type="text" 
                 id="userName" 
@@ -74,7 +75,7 @@ import { UploadService, UserMetadata } from '../services/uploadFunctions';
             </div>
             
             <div class="form-row">
-              <label for="location">Location:</label>
+              <label for="location">{{ translate('location') }}</label>
               <input 
                 type="text" 
                 id="location" 
@@ -84,7 +85,7 @@ import { UploadService, UserMetadata } from '../services/uploadFunctions';
             </div>
             
             <div class="form-row">
-              <label for="eventDate">Date:</label>
+              <label for="eventDate">{{ translate('date') }}</label>
               <input 
                 type="date" 
                 id="eventDate" 
@@ -93,7 +94,7 @@ import { UploadService, UserMetadata } from '../services/uploadFunctions';
             </div>
             
             <div class="form-row">
-              <label for="description">Description:</label>
+              <label for="description">{{ translate('description') }}</label>
               <textarea 
                 id="description" 
                 [(ngModel)]="userMetadata.description" 
@@ -103,12 +104,12 @@ import { UploadService, UserMetadata } from '../services/uploadFunctions';
             </div>
             
             <div class="form-row">
-              <label for="tags">Tags:</label>
+              <label for="tags">{{ translate('tags') }}</label>
               <input 
                 type="text" 
                 id="tags" 
                 [(ngModel)]="userMetadata.tags" 
-                placeholder="sunset, beach, family (comma separated)"
+                [placeholder]="translate('tagsPlaceholder')"
                 class="form-input">
             </div>
           </div>
@@ -116,25 +117,25 @@ import { UploadService, UserMetadata } from '../services/uploadFunctions';
         
         <div class="upload-actions">
           <button class="btn-secondary" (click)="skipUpload()">
-            Skip
+            {{ translate('skip') }}
           </button>
           
           <button class="btn-metadata" 
                   *ngIf="selectedFiles.length > 0 && !showMetadataForm && !isUploading"
                   (click)="showMetadataFormMethod()">
-            Add Details
+            {{ translate('addDetails') }}
           </button>
           
           <button class="btn-secondary" 
                   *ngIf="showMetadataForm && !isUploading"
                   (click)="goBackFromMetadata()">
-            Back
+            {{ translate('back') }}
           </button>
           
           <button class="btn-primary" 
                   (click)="startUpload()" 
                   [disabled]="selectedFiles.length === 0 || isUploading">
-            {{ isUploading ? 'Uploading...' : 'Upload Photos' }}
+            {{ isUploading ? translate('uploadingBtn') : translate('uploadPhotos') }}
           </button>
         </div>
       </div>
@@ -495,19 +496,21 @@ import { UploadService, UserMetadata } from '../services/uploadFunctions';
     }
   `]
 })
-export class UploadModuleComponent {
+export class UploadModuleComponent implements OnChanges {
   @Output() uploadComplete = new EventEmitter<File[]>();
   @Output() uploadSkipped = new EventEmitter<void>();
   @Output() modalClosed = new EventEmitter<void>();
 
+  @Input() currentLanguage: string = 'en';
+
   isVisible = true;
-  title = 'Upload Your Moments';
   selectedFiles: File[] = [];
   isDragOver = false;
   isUploading = false;
   uploadProgress = 0;
   errorMessage = '';
   uploadResults: any[] = [];
+  
   
   // Metadata form properties
   showMetadataForm = false;
@@ -519,7 +522,11 @@ export class UploadModuleComponent {
     tags: ''
   };
 
-  constructor(private cdr: ChangeDetectorRef, private uploadService: UploadService) {
+// map all keys that need to be translated , location is html
+// capture status of current lang if mk or eng in homeview and pass it to this component to show the correct language in the upload module
+
+  constructor(private cdr: ChangeDetectorRef, private uploadService: UploadService, private translations: TranslationService) {
+    console.log("a");
     console.log('🔧 Upload module constructor - upload_modul.ts');
     // Initialize user metadata with default values
     this.userMetadata = {
@@ -529,7 +536,16 @@ export class UploadModuleComponent {
       description: '',
       tags: ''
     };
+
     console.log('✅ Upload module initialized successfully');
+    
+    console.log('Current translations:', this.translations.getCurrentLanguage());
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['currentLanguage']) {
+      this.translations.setLanguage(this.currentLanguage);
+    }
   }
 
   closeModal(): void {
@@ -537,7 +553,15 @@ export class UploadModuleComponent {
     this.modalClosed.emit();
   }
 
+  translate(key: string): string {
+  
+    return this.translations.translate(key as keyof Translation);
+  }
+
+  
+  
   triggerFileInput(): void {
+    
     const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
     fileInput?.click();
   }

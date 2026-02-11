@@ -10,33 +10,33 @@ import { TranslationService } from '../services/translations';
     <div class="share-modal-overlay" *ngIf="showModal" (click)="onOverlayClick($event)">
       <div class="share-modal-content" (click)="$event.stopPropagation()">
         <div class="share-modal-header">
-          <h3>{{ translate('Share') }}</h3>
+          <h3>{{ translate('stepShare') }}</h3>
           <button class="close-btn" (click)="closeModal()">&times;</button>
         </div>
         
         <div class="share-content">
-          <p class="share-description">{{ translate('Description') }}</p>
+          <p class="share-description">{{ translate('stepShareDesc') }}</p>
           
           <div class="share-buttons">
-            <button class="share-btn instagram-btn" (click)="shareToInstagram()">
+            <a class="share-btn instagram-btn" [href]="shareLinks.instagram" target="_blank" rel="noopener">
               <div class="btn-icon"></div>
               <span>Instagram</span>
-            </button>
+            </a>
             
-            <button class="share-btn facebook-btn" (click)="shareToFacebook()">
+            <a class="share-btn facebook-btn" [href]="shareLinks.facebook" target="_blank" rel="noopener">
               <div class="btn-icon"></div>
               <span>Facebook</span>
-            </button>
+            </a>
             
-            <button class="share-btn twitter-btn" (click)="shareToTwitter()">
+            <a class="share-btn twitter-btn" [href]="shareLinks.twitter" target="_blank" rel="noopener">
               <div class="btn-icon"></div>
               <span>Twitter</span>
-            </button>
+            </a>
             
-            <button class="share-btn whatsapp-btn" (click)="shareToWhatsApp()">
+            <a class="share-btn whatsapp-btn" [href]="shareLinks.whatsapp" target="_blank" rel="noopener">
               <div class="btn-icon"></div>
               <span>WhatsApp</span>
-            </button>
+            </a>
           </div>
         </div>
         
@@ -228,7 +228,27 @@ export class ShareModuleComponent {
   @Output() modalClosed = new EventEmitter<void>();
   
   showModal: boolean = true;
-  translationService = new TranslationService();
+  shareLinks: { instagram: string; facebook: string; twitter: string; whatsapp: string } = {
+    instagram: 'https://www.instagram.com/',
+    facebook: '',
+    twitter: '',
+    whatsapp: ''
+  };
+
+  constructor(private translationService: TranslationService) {
+    this.buildShareLinks();
+  }
+
+  private buildShareLinks(): void {
+    const pageUrl = encodeURIComponent(window.location.href || '');
+    const text = encodeURIComponent('Check out my Moments!');
+
+    this.shareLinks.facebook = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+    this.shareLinks.twitter = `https://twitter.com/intent/tweet?text=${text}&url=${pageUrl}`;
+    this.shareLinks.whatsapp = `https://api.whatsapp.com/send?text=${text}%20${pageUrl}`;
+    // Instagram has no simple web intent for prefilled sharing; keep homepage as fallback
+    this.shareLinks.instagram = 'https://www.instagram.com/';
+  }
   
   closeModal(): void {
     this.showModal = false;
