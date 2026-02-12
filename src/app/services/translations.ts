@@ -82,6 +82,9 @@ export interface Translation {
   // Success Messages
   photosAddedToAlbum: string;
   albumSuccessfullyCreated: string;
+
+  Photos: string;
+  Back: string;
   
   // Footer
   aboutUs: string;
@@ -127,6 +130,10 @@ export const translations: Record<string, Translation> = {
     heroSubtitle: 'Our Moments, Our Stories',
     getStarted: 'Get Started',
     learnMore: 'How It Works',
+
+    //Gallery Site
+    Photos: 'Photos',
+    Back: 'Back',
     
   
     
@@ -253,6 +260,10 @@ export const translations: Record<string, Translation> = {
     mountainPeak: 'Планински Врв',
     cityLights: 'Градски Светлини',
     goldenHour: 'Златен Час',
+
+
+    Photos: 'Слики',
+    Back: 'Назад',
     
 
     

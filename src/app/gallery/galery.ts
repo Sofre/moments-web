@@ -1,9 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, SimpleChanges, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule, NavigationEnd } from '@angular/router';
 import { LoadingService } from '../services/loading.service';
 import { LoadingComponent } from '../animations/loading.component';
 import { ViewPhotosService, DrivePhoto } from '../services/ViewPhotos';
+import { TranslationService,Translation } from '../services/translations';
 
 // Using DrivePhoto from ViewPhotosService
 // Adding local interfaces for gallery functionality
@@ -21,17 +22,24 @@ interface GalleryPhoto extends DrivePhoto {
   styleUrl: './gallery.css'
 })
 export class GalleryComponent implements OnInit, OnDestroy {
+
+  @Input() currentLanguage: string = 'en'; // Default language
+
   
   photos: GalleryPhoto[] = [];
   filteredPhotos: GalleryPhoto[] = [];
   activeFilter: string = 'all';
   isLoading: boolean = false;
   errorMessage: string = '';
+
+
+
   
   constructor(
     private router: Router, 
     private loadingService: LoadingService,
-    private viewPhotosService: ViewPhotosService
+    private viewPhotosService: ViewPhotosService,
+    private translationService: TranslationService,
   ) {
     // Removed automatic refresh on navigation - cache should persist when navigating back and forth
     // Only refresh when explicitly requested (upload or manual reload)
@@ -50,6 +58,21 @@ export class GalleryComponent implements OnInit, OnDestroy {
       this.loadPhotosFromDrive(false);
     }
   }
+
+  ngOnChanges(changes : SimpleChanges): void {
+    if(changes['currentLanguage']) {
+      this.translationService.setLanguage(this.currentLanguage);
+    }
+  }
+
+  public translate(key:string):string {
+
+    return this.translationService.translate(key as keyof Translation);
+
+
+  }
+
+
   
   // Load photos from Google Drive
   private async loadPhotosFromDrive(forceRefresh: boolean = false): Promise<void> {
