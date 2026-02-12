@@ -21,7 +21,7 @@
   position: relative;
   overflow: hidden;
   min-height: 100vh;
-  background-image:  url('/moments-web/assets/images/4k.jpg');
+  background-image:  url('/public/assets/images/4k.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
