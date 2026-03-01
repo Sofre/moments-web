@@ -1,0 +1,195 @@
+body {
+  position: relative;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5); /* semi-transparent dark overlay */
+  z-index: 1;
+}
+
+.login-container {
+    width: 350px;
+    min-height: 480px;
+    margin: 80px auto;
+    padding: 2.5rem 2rem 2rem 2rem;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #f8fafc49 60%, #e0e7ff0a 100%);
+    box-shadow: 0 8px 32px rgba(247, 247, 247, 0.74), 0 1.5px 8px rgba(0, 56, 211, 0.603);
+    border: none;
+    position: relative;
+    z-index: 2;
+}
+
+.login-container h2 {
+    text-align: center;
+    color: #eeeeee;
+    font-size: 2rem;
+    margin-bottom: 2.5rem;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.login-container input {
+   border: none;
+  outline: none;
+  border-radius: 15px;
+  padding: 1.2em;
+  background-color: #fffdfd;
+  box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
+  transition: 300ms ease-in-out;
+  margin-bottom: 2rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+.input:focus {
+  background-color: white;
+  transform: scale(1.05);
+  box-shadow: 13px 13px 100px #969696,
+             -13px -13px 100px #ffffff;
+}
+
+.login-container button {
+  padding: 19px 40px;
+  border-radius: 50px;
+  cursor: pointer;
+  border: 0;
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-size: 15px;
+  transition: all 0.5s ease;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+}
+.login-container button:hover {
+  letter-spacing: 3px;
+  background-color: hsl(221, 100%, 42%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: rgb(140, 109, 197) 0px 7px 29px 0px;
+}
+.login-container button:active {
+  letter-spacing: 3px;
+  background-color: hsl(221, 100%, 42%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: rgb(160, 127, 221) 0px 0px 0px 0px;
+  transform: translateY(10px);
+  transition: 100ms;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #33333300;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+@media (min-width: 350px) {
+  footer {
+    left: 0;
+  }
+  .login-container {
+    margin-bottom: 80px;
+  }
+}
+
+.info {
+
+    color: #eeeeee;
+    text-align: center;
+    margin-top: 1rem;
+
+}
+
+/* Error message appears below the hint/info */
+.error {
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
+    z-index: 10;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    width: 320px;
+    max-width: 90%;
+    margin: 1rem auto 0 auto;
+    padding: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    background: #FCE8DB;
+    border-radius: 8px;
+    box-shadow: 0px 0px 5px -3px #111;
+}
+
+.error__icon {
+    width: 20px;
+    height: 20px;
+    transform: translateY(-2px);
+    margin-right: 8px;
+}
+
+.error__icon path {
+    fill: #EF665B;
+}
+
+.error__title {
+    font-weight: 500;
+    font-size: 14px;
+    color: #71192F;
+}
+
+.error__close {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.error__close path {
+    fill: #71192F;
+}
+
+.success {
+  color: #155724;
+  background: #d4edda;
+  border: 1px solid #c3e6cb;
+  margin-top: 1rem;
+  text-align: center;
+  border-radius: 8px;
+  padding: 12px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  width: 320px;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0px 0px 5px -3px #111;
+}

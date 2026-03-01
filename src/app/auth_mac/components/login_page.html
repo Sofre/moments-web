@@ -1,0 +1,25 @@
+<img class="background-video" src="/assets/gif/backdrop.gif" alt="Background" />
+<div class="background-overlay"></div>
+
+<div class="login-container">
+  <h2>Shhh… Secret Here</h2>
+  <form (ngSubmit)="onLogin()">
+    <input type="password" [(ngModel)]="secret" name="secret" placeholder="Secret" required />
+    <button type="submit">Login</button>
+    <div *ngIf="loginError" class="error">Invalid credentials: Check Hint </div>
+    <div *ngIf="loginSuccess" class="success">Success! Redirecting...</div>
+    
+  </form>
+
+  <div class="info">
+    <button type="button" (click)="showHint = !showHint" style="font-size: 0.85em; padding: 16px 20px;">Hint</button>
+    <p class="hint" *ngIf="showHint">Home Wifi Password</p>
+  </div>
+
+    <footer class="footer">
+      <div class="footer-bottom">
+        <p style="font-size: medium;"> Moments .. For the Family ❤️ </p>
+      </div>
+    </footer>
+</div>
+
