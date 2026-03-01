@@ -51,6 +51,8 @@ export class LoginPageComponent {
     } else {
       this.loginError = true;
       console.log('Login failed: Incorrect password');
+      console.log('Hash password:', this.authService.hashPassword(this.secret));
+      console.log('Login failed: Incorrect password');
       this.loginSuccess = false;
     }
   }
