@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" data-beasties-container>
+<head>
+  <meta charset="utf-8">
+  <title>MomentsSite</title>
+  <base href="/moments-web/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="manifest" href="manifest.webmanifest">
+  <script type="text/javascript">
+    // Single Page Apps for GitHub Pages
+    // MIT License
+    // https://github.com/rafgraph/spa-github-pages
+    // This script checks to see if a redirect is present in the query string,
+    // converts it back to the correct url and adds it to the
+    // browser's history using window.history.replaceState(...),
+    // which won't cause the browser to attempt to load the new url.
+    // When the single page app is loaded further down in this file,
+    // the correct url will be waiting in the browser's history for
+    // the single page app to route accordingly.
+    (function(l) {
+      if (l.search[1] === '/' ) {
+        var decoded = l.search.slice(1).split('&').map(function(s) {
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+            l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location))
+  </script>
+<style>body{margin:0;padding:0;background:linear-gradient(135deg,#ebd189,khaki,#deb887,tan,wheat);min-height:100vh;font-family:Inconsolata,Tahoma,Geneva,Verdana,sans-serif;position:relative;overflow-x:hidden}body:before{content:"";position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at 20% 80%,rgba(135,206,235,.3) 0%,transparent 50%),radial-gradient(circle at 80% 20%,rgba(240,230,140,.3) 0%,transparent 50%),radial-gradient(circle at 40% 40%,rgba(222,184,135,.2) 0%,transparent 50%);animation:waveAnimation 8s ease-in-out infinite;pointer-events:none;z-index:-1}@keyframes waveAnimation{0%,to{transform:translate(0) translateY(0) scale(1);opacity:.7}25%{transform:translate(10px) translateY(-5px) scale(1.05);opacity:.8}50%{transform:translate(-5px) translateY(10px) scale(.95);opacity:.6}75%{transform:translate(-10px) translateY(-8px) scale(1.02);opacity:.9}}html{height:100%;background:linear-gradient(135deg,#87ceeb,khaki,#deb887,tan,wheat)}</style><link rel="stylesheet" href="styles-2GXBEILD.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles-2GXBEILD.css"></noscript></head>
+<body>
+  <app-root></app-root>
+  <noscript>Please enable JavaScript to continue using this application.</noscript>
+<script src="main-74W7XQWN.js" type="module"></script></body>
+</html>
