@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1770851300649,
+  "timestamp": 1772405369822,
   "index": "/moments-web/index.html",
   "assetGroups": [
     {
@@ -13,7 +13,7 @@
       "urls": [
         "/moments-web/favicon.ico",
         "/moments-web/index.html",
-        "/moments-web/main-ZWSVZ7I3.js",
+        "/moments-web/main-4N6D2C56.js",
         "/moments-web/manifest.webmanifest",
         "/moments-web/styles-2GXBEILD.css"
       ],
@@ -27,6 +27,7 @@
         "ignoreVary": true
       },
       "urls": [
+        "/moments-web/assets/gif/backdrop.gif",
         "/moments-web/assets/images/4k.jpg",
         "/moments-web/assets/images/beach.jpg",
         "/moments-web/assets/images/buba1.png"
@@ -36,12 +37,13 @@
   ],
   "dataGroups": [],
   "hashTable": {
+    "/moments-web/assets/gif/backdrop.gif": "eebb6852cf58a5d78d5f7235e8d9c186e8289d4e",
     "/moments-web/assets/images/4k.jpg": "9ab8c35068fb62926c2e648220095c35f86fcff3",
     "/moments-web/assets/images/beach.jpg": "11197a56c3f690614d8cc47a8dac3ceb75e3f19b",
     "/moments-web/assets/images/buba1.png": "4400a6722afab3c9fb5956f69218d35d232a66d0",
     "/moments-web/favicon.ico": "9c39f434fe1261f68c5e3eefdf734630d99c5670",
-    "/moments-web/index.html": "8a913b8dcfcdffe5dcc4200816f8a99d83b8357a",
-    "/moments-web/main-ZWSVZ7I3.js": "f633d331d1474a5704822daa1dd586623690d781",
+    "/moments-web/index.html": "8e916d6c0916b4a914bb2a885ff4db766558e768",
+    "/moments-web/main-4N6D2C56.js": "76f85fac7d5dadad8a4c0bdbcafeab1e4fb48eba",
     "/moments-web/manifest.webmanifest": "f509666cb09a6e16f4230d4ea4e8164250933f74",
     "/moments-web/styles-2GXBEILD.css": "f5f6647eb9ee90c21c9475c316d17b7119c57fbe"
   },

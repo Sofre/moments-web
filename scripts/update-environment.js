@@ -28,11 +28,16 @@ const environmentConfig = {
     clientId: envVars.GOOGLE_CLIENT_ID || '',
     clientSecret: envVars.GOOGLE_CLIENT_SECRET || '',
     refreshToken: envVars.GOOGLE_REFRESH_TOKEN || '',
+    apiKey: envVars.GOOGLE_API_KEY || '',
     uploadEndpoint: 'https://www.googleapis.com/upload/drive/v3/files'
   },
   app: {
     name: envVars.APP_NAME || 'Family Moments',
     url: envVars.APP_URL || 'http://localhost:4200'
+  },
+  auth: {
+    salt: envVars.VITE_PASS_SALT || '',
+    hash: envVars.VITE_PASS_HASH || ''
   }
 };
 
