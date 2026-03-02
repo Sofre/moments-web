@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1772409003312,
+  "timestamp": 1772410970494,
   "index": "/moments-web/index.html",
   "assetGroups": [
     {
@@ -13,7 +13,7 @@
       "urls": [
         "/moments-web/favicon.ico",
         "/moments-web/index.html",
-        "/moments-web/main-74W7XQWN.js",
+        "/moments-web/main-SHRUX4W2.js",
         "/moments-web/manifest.webmanifest",
         "/moments-web/styles-2GXBEILD.css"
       ],
@@ -42,8 +42,8 @@
     "/moments-web/assets/images/beach.jpg": "11197a56c3f690614d8cc47a8dac3ceb75e3f19b",
     "/moments-web/assets/images/buba1.png": "4400a6722afab3c9fb5956f69218d35d232a66d0",
     "/moments-web/favicon.ico": "9c39f434fe1261f68c5e3eefdf734630d99c5670",
-    "/moments-web/index.html": "ed623400b9e8f6107937081cf22e92cdc499839e",
-    "/moments-web/main-74W7XQWN.js": "a1fce9eaf5ad573ae9eb461e7413b00002c9e490",
+    "/moments-web/index.html": "4b389110485826514561aa95eca53a8b363cd91a",
+    "/moments-web/main-SHRUX4W2.js": "5956d8bae0baf28da88a79f6173962630bb78bc7",
     "/moments-web/manifest.webmanifest": "f509666cb09a6e16f4230d4ea4e8164250933f74",
     "/moments-web/styles-2GXBEILD.css": "f5f6647eb9ee90c21c9475c316d17b7119c57fbe"
   },
